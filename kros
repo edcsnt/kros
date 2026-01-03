@@ -26,8 +26,6 @@ log() { echo "$@"; } >&2
 die() { log "$@"; exit 2; }
 
 [ $# -eq 1 ] || die usage: "$0" file
-[ -f "$1" ]  || die "$1" is not a regular file
-[ -r "$1" ]  || die "$1" is not readable
 
 y=$(date +%Y)
 t=$(date +%Y-%m-%d)
