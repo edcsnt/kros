@@ -1,0 +1,44 @@
+---
+# Copyright 2026 edcsnt. All rights reserved.
+name: lint
+# yamllint disable-line rule:truthy
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/lint.yaml
+      - kros
+  workflow_dispatch: {}
+permissions: {}
+defaults:
+  run:
+    shell: sh
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+jobs:
+  checkbashisms:
+    runs-on:
+      - ubuntu-latest
+    steps:
+      # yamllint disable rule:line-length
+      - run: |
+          curl -O \
+          https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/${{ github.ref_name }}/kros \
+          https://salsa.debian.org/debian/devscripts/-/raw/v2.25.33/scripts/checkbashisms.pl
+          ./checkbashisms.pl -pflx kros
+      # yamllint enable rule:line-length
+    timeout-minutes: 1
+  shellcheck:
+    runs-on:
+      - ubuntu-latest
+    steps:
+      # yamllint disable rule:line-length
+      - run: |
+          curl -O \
+          https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/${{ github.ref_name }}/kros
+          shellcheck -a kros
+      # yamllint enable rule:line-length
+    timeout-minutes: 1
+...

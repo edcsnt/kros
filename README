@@ -1,0 +1,39 @@
+kros
+====
+Simple, POSIX-conformant shell script for Unix-like systems that clocks
+a user in and out of the Kairos electronic timekeeping system (ETS) from
+DIMEP[1].
+
+
+Dependencies
+------------
+* POSIX shell
+* POSIX date utility
+* curl
+
+No GNU extensions are used.
+
+
+Installation
+------------
+Edit the PREFIX variable in the Makefile or leave it at the default of
+/usr/local and run:
+
+    make install
+
+To uninstall, simply run:
+
+    make uninstall
+
+
+Configuration
+-------------
+See kros(1).
+
+
+Scheduling
+----------
+A crontab(5) file is provided.
+
+
+[1] <https://www.dimep.com.br/controle-de-ponto/>

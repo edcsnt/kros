@@ -1,0 +1,56 @@
+.\" Copyright 2026 edcsnt. All rights reserved.
+.Dd January 3, 2026
+.Dt KROS 1
+.Os
+.Sh NAME
+.Nm kros
+.Nd clock in and out of Kairos
+.Sh SYNOPSIS
+.Nm
+.Ar file
+.Sh DESCRIPTION
+.Nm
+is an
+.St -p1003.1-2008 Ns \(enconformant
+shell script for Unix-like systems that clocks a user in and out of the
+Kairos electronic timekeeping system (ETS) from DIMEP.
+.Pp
+Skip days are configured in-script: Lines with
+.Sy %Y-%m-%d
+(see
+.Xr strftime 3 )
+or
+.Sy %m-%d
+dates in the variable
+.Em config
+are considered skip days. The current year followed by a hyphen
+.Pq Sy %Y-
+is prepended to
+.Sy %m-%d
+dates at runtime.
+.Pp
+A warning about
+.Xr systemd.timer 5 :
+If the calendar timer elapses while the system is sleeping, service
+activation will unconditionally happen upon system resumption,
+potentially resulting in an incorrect time marking.
+.Pp
+kros is pronounced "cross". It is a reminder of how using Kairos is like
+carrying one.
+.Sh OPERANDS
+The following operand is supported:
+.Bl -tag -width Ds
+.It Ar file
+Credentials file. The first line must contain the user's email address
+and password separated by a colon.
+.El
+.Sh EXIT STATUS
+The following exit values are returned:
+.Bl -tag -width Ds
+.It \00
+The user was successfully clocked in or out.
+.It \01
+The current date is configured as a skip day.
+.It >1
+An error occurred.
+.El
