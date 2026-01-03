@@ -26,6 +26,7 @@ jobs:
       - run: |
           curl -O \
           https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/${{ github.ref_name }}/kros \
+          -O \
           https://salsa.debian.org/debian/devscripts/-/raw/v2.25.33/scripts/checkbashisms.pl
           ./checkbashisms.pl -pflx kros
       # yamllint enable rule:line-length

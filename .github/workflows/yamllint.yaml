@@ -25,7 +25,7 @@ jobs:
     steps:
       - run: |
           git clone -b ${{ github.ref_name }} --depth 1 \
-          ${{ github.repositoryUrl }}
+          ${{ github.server_url }}/${{ github.repository }}.git
           cd kros
           yamllint -f colored -s .
 ...
