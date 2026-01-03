@@ -19,11 +19,11 @@ Installation
 Edit the PREFIX variable in the Makefile or leave it at the default of
 /usr/local and run:
 
-    make install
+	make install
 
 To uninstall, simply run:
 
-    make uninstall
+	make uninstall
 
 
 Configuration
