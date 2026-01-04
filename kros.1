@@ -12,10 +12,8 @@
 .Nm
 is an
 .St -p1003.1-2008 Ns \(enconformant
-shell script for Unix-like systems that clocks a user in and out of the
-Kairos electronic timekeeping system
-.Pq ETS
-from DIMEP.
+shell script that clocks a user in and out of the Kairos electronic
+timekeeping system from DIMEP.
 .Pp
 Skip days are configured in-script: Lines with
 .Sy %Y-%m-%d
@@ -36,7 +34,8 @@ If the calendar timer elapses while the system is sleeping, service
 activation will unconditionally happen upon system resumption,
 potentially resulting in an incorrect time marking.
 .Pp
-kros is pronounced
+.Nm
+is pronounced
 .Dq cross .
 It is a reminder of how using Kairos is like carrying one.
 .Sh OPERANDS

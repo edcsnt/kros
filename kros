@@ -25,6 +25,7 @@ echo() { printf %s\\n "$*"; } >&2
 
 [ $# -eq 1 ] || { echo usage: "$0" file; exit 2; }
 
+read -r F <"$1"
 Y=$(date +%Y)
 T=$(date +%Y-%m-%d)
 N='
@@ -34,16 +35,15 @@ skip=
 for d in $CONFIG
 do
 	case $d in
-	[0-9][0-9]-[0-9][0-9]) skip=$skip$N$Y-$d ;;
-	                    *) skip=$skip$N$d
+		[0-9][0-9]-[0-9][0-9]) skip=$skip$N$Y-$d ;;
+		                    *) skip=$skip$N$d
 	esac
 done
 
 case $skip in
-*$T*) echo "$T" is a skip day; exit 1
+	*$T*) echo "$T" is a skip day; exit 1
 esac
 
 echo clocking in/out
-read -r F <"$1"
 curl -d UserName="${F%%:*}" --data-urlencode Password="${F#*:}" \
 	https://www.dimepkairos.com.br/Dimep/Account/Marcacao

@@ -1,8 +1,7 @@
 kros
 ====
-Simple, POSIX-conformant shell script for Unix-like systems that clocks
-a user in and out of the Kairos electronic timekeeping system (ETS) from
-DIMEP[1].
+Simple, POSIX-conformant shell script that clocks a user in and out of
+the Kairos electronic timekeeping system from DIMEP[1].
 
 
 Dependencies
