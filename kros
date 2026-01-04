@@ -1,7 +1,7 @@
 #!/bin/sh
 # Copyright 2026 edcsnt. All rights reserved.
 
-config='
+CONFIG='
 01-01
 01-25
 04-21
@@ -21,31 +21,29 @@ config='
 2026-06-04
 '
 
-echo() { printf %s\\n "$*"; }
-log() { echo "$@"; } >&2
-die() { log "$@"; exit 2; }
+echo() { printf %s\\n "$*"; } >&2
 
-[ $# -eq 1 ] || die usage: "$0" file
+[ $# -eq 1 ] || { echo usage: "$0" file; exit 2; }
 
-y=$(date +%Y)
-t=$(date +%Y-%m-%d)
-nl='
+Y=$(date +%Y)
+T=$(date +%Y-%m-%d)
+N='
 '
 
 skip=
-for d in $config
+for d in $CONFIG
 do
 	case $d in
-	[0-9][0-9]-[0-9][0-9]) skip=$skip$nl$y-$d ;;
-	                    *) skip=$skip$nl$d    ;;
+	[0-9][0-9]-[0-9][0-9]) skip=$skip$N$Y-$d ;;
+	                    *) skip=$skip$N$d
 	esac
 done
 
 case $skip in
-*$t*) log "$t" is a skip day; exit 1 ;;
+*$T*) echo "$T" is a skip day; exit 1
 esac
 
-log clocking in/out
-read -r f <"$1"
-curl -d UserName="${f%%:*}" --data-urlencode Password="${f#*:}" \
+echo clocking in/out
+read -r F <"$1"
+curl -d UserName="${F%%:*}" --data-urlencode Password="${F#*:}" \
 	https://www.dimepkairos.com.br/Dimep/Account/Marcacao
