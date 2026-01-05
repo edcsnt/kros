@@ -8,9 +8,9 @@ clean:
 	@echo kros does not need building or cleaning
 install:
 	mkdir -p $(PREFIX)/bin $(MANPREFIX)/man1
-	cp kros $(PREFIX)/bin/kros
+	cp kros $(PREFIX)/bin
 	gzip -c kros.1 >$(MANPREFIX)/man1/kros.1.gz \
-		|| cp kros.1 $(MANPREFIX)/man1/kros.1
+		|| cp kros.1 $(MANPREFIX)/man1
 uninstall:
-	rm -f $(PREFIX)/bin/kros $(PREFIX)/sbin/kros $(MANPREFIX)/man1/kros.1 \
+	rm -f $(PREFIX)/bin/kros $(MANPREFIX)/man1/kros.1 \
 		$(MANPREFIX)/man1/kros.1.gz
