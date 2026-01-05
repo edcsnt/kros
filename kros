@@ -40,10 +40,7 @@ do
 		                    *) skip=$skip$n$d
 	esac
 done
-
-case $skip in
-	*$t*) echo "$dt" is a skip day; exit 1
-esac
+case $skip in *$t*) echo "$dt" is a skip day; exit 1; esac
 
 echo "$dt" clocking in/out
 curl -d UserName="${f%%:*}" --data-urlencode Password="${f#*:}" \
