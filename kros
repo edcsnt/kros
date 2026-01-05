@@ -42,7 +42,7 @@ do
 done
 
 case $skip in
-	*$t*) echo "$t" is a skip day; exit 1
+	*$t*) echo "$dt" is a skip day; exit 1
 esac
 
 echo "$dt" clocking in/out
