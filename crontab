@@ -1,2 +1,2 @@
-0	7	*	*	1-5	/usr/local/sbin/kros /etc/kros 2>>/var/log/cron.log
-0	16	*	*	1-5	/usr/local/sbin/kros /etc/kros 2>>/var/log/cron.log
+0	7	*	*	1-5	/usr/local/bin/kros /etc/kros 2>>/var/log/cron.log
+0	16	*	*	1-5	/usr/local/bin/kros /etc/kros 2>>/var/log/cron.log
