@@ -1,5 +1,5 @@
 .\" Copyright 2026 edcsnt. All rights reserved.
-.Dd January 5, 2026
+.Dd January 7, 2026
 .Dt KROS 1
 .Os
 .Sh NAME
@@ -7,6 +7,7 @@
 .Nd clock in and out of Kairos
 .Sh SYNOPSIS
 .Nm
+.Op Fl f
 .Ar file
 .Sh DESCRIPTION
 .Nm
@@ -15,14 +16,16 @@ is an
 shell script that clocks a user in and out of the Kairos electronic
 timekeeping system from DIMEP.
 .Pp
-Skip days are configured in-script: Lines with
+Skip days are configured in-script: Except when
+.Fl f
+is specified,
 .Sy %Y-%m-%d
 .Pq see Xr strftime 3
-or
+and
 .Sy %m-%d
-dates in the variable
+dates in the
 .Em config
-are considered skip days. The current year followed by a hyphen
+variable are skipped. The current year followed by a hyphen
 .Pq Sy %Y-
 is prepended to
 .Sy %m-%d
@@ -38,6 +41,14 @@ potentially resulting in an incorrect time marking.
 is pronounced
 .Dq cross .
 It is a reminder of how using Kairos feels like carrying one.
+.Sh OPTIONS
+The following option is supported:
+.Bl -tag -width Ds
+.It Fl f
+Forced mode. Ignore the contents of the
+.Em config
+variable and always clock in/out.
+.El
 .Sh OPERANDS
 The following operand is supported:
 .Bl -tag -width Ds

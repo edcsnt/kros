@@ -7,7 +7,14 @@ the Kairos electronic timekeeping system from DIMEP[1].
 Dependencies
 ------------
 * POSIX shell
-* POSIX date, printf, and read utilities
+* POSIX utilities:
+  * date
+  * exit
+  * printf
+  * read
+  * return
+  * shift
+  * test
 * curl
 
 No GNU extensions are used.
