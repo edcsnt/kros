@@ -25,26 +25,29 @@ ok() { case $1 in '') return 1 ;; *) return 0; esac; }
 
 log() { printf %s\\n "$*"; } >&2
 
+# shellcheck disable=SC2295
+basename() { s=${1%${1##*[!/]}}; printf %s "${s##*/}"; }
+
 ckdate() {
 	d=${1%%T*}
 	n='
 '
 
 	case $n$config$n in
-		*$n$d$n*|*$n${d#*-}$n*) log "$1" is a skip day; exit 1
+		*$n$d$n*|*$n${d#*-}$n*) log $1 is a skip day; exit 1
 	esac
 }
 
 force=
 case $1 in -f) force=1; shift; esac
-[ $# -eq 1 ] || { log usage: "$(basename "$0")" [-f] file; exit 2; }
+[ $# -eq 1 ] || { log usage: $(basename "$0") [-f] file; exit 2; }
 
 dt=$(date +%Y-%m-%dT%H:%M:%S)
-ok $force || ckdate "$dt"
+ok $force || ckdate $dt
 
-log "$dt" clocking in/out
-read -r f <"$1"
+log $dt clocking in/out
+read -r f <$1
 # TODO: use --out-null
-printf %s "${f#*:}" \
-	| curl -d UserName="${f%%:*}" --data-urlencode Password@- \
+printf %s ${f#*:} \
+	| curl -d UserName=${f%%:*} --data-urlencode Password@- \
 	-fo /dev/null -Ss https://www.dimepkairos.com.br/Dimep/Account/Marcacao
