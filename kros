@@ -48,6 +48,6 @@ ok $force || ckdate $dt
 log $dt clocking in/out
 read -r f <$1
 # TODO: use --out-null
-printf %s ${f#*:} \
-	| curl -d UserName=${f%%:*} --data-urlencode Password@- \
+printf %s "${f#*:}" \
+	| curl -d UserName="${f%%:*}" --data-urlencode Password@- \
 	-fo /dev/null -Ss https://www.dimepkairos.com.br/Dimep/Account/Marcacao
