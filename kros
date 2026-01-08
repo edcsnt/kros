@@ -22,9 +22,7 @@ config='
 '
 
 ok() { case $1 in '') return 1 ;; *) return 0; esac; }
-
 log() { printf %s\\n "$*"; } >&2
-
 # shellcheck disable=SC2295
 basename() { s=${1%${1##*[!/]}}; printf %s "${s##*/}"; }
 
@@ -46,7 +44,7 @@ dt=$(date +%Y-%m-%dT%H:%M:%S)
 ok $force || ckdate $dt
 
 log $dt clocking in/out
-read -r f <$1
+read -r f <"$1"
 # TODO: use --out-null
 printf %s "${f#*:}" \
 	| curl -d UserName="${f%%:*}" --data-urlencode Password@- \
