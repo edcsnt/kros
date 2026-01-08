@@ -1,4 +1,4 @@
 0	7	*	*	1-5	kros    /etc/kros 2>>/var/log/cron.log
 0	16	*	*	1-5	kros    /etc/kros 2>>/var/log/cron.log
-0	14	18	2	1-5	kros -f /etc/kros 2>>/var/log/cron.log
+0	11	18	2	1-5	kros -f /etc/kros 2>>/var/log/cron.log
 0	16	18	2	1-5	kros -f /etc/kros 2>>/var/log/cron.log
