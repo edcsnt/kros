@@ -33,12 +33,9 @@ ckdate() {
 	esac
 }
 
-force=
-case $1 in -f) force=1; shift; esac
-case $# in 1) ;; *) log usage: "${0##*/}" [-f] file; exit 2; esac
-
 dt=$(date +%Y-%m-%dT%H:%M:%S)
-case $force in '') ckdate $dt ;; *) ;; esac
+case $1 in -f) shift ;; *) ckdate $dt; esac
+case $# in 1) ;; *) log usage: "${0##*/}" [-f] file; exit 2; esac
 
 log $dt clocking in/out
 IFS= read -r f <"$1"
