@@ -21,7 +21,6 @@ config='
 2026-06-04
 '
 
-ok() { case $1 in '') return 1 ;; *) return 0; esac; }
 log() { printf %s\\n "$*"; } >&2
 # shellcheck disable=SC2295
 basename() { s=${1%${1##*[!/]}}; printf %s "${s##*/}"; }
@@ -38,10 +37,10 @@ ckdate() {
 
 force=
 case $1 in -f) force=1; shift; esac
-[ $# -eq 1 ] || { log usage: $(basename "$0") [-f] file; exit 2; }
+case $# in 1) ;; *) log usage: $(basename "$0") [-f] file; exit 2; esac
 
 dt=$(date +%Y-%m-%dT%H:%M:%S)
-ok $force || ckdate $dt
+case $force in '') ckdate $dt ;; *) ;; esac
 
 log $dt clocking in/out
 read -r f <"$1"
