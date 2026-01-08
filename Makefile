@@ -7,10 +7,14 @@ MANPREFIX = $(PREFIX)/share/man
 clean:
 	@echo kros does not need building or cleaning
 install:
-	mkdir -p $(PREFIX)/bin $(MANPREFIX)/man1
-	cp kros $(PREFIX)/bin
-	gzip -c kros.1 >$(MANPREFIX)/man1/kros.1.gz \
-		|| cp kros.1 $(MANPREFIX)/man1
+	mkdir -p -- "$(DESTDIR)$(PREFIX)/bin" "$(DESTDIR)$(MANPREFIX)/man1"
+	cp kros "$(DESTDIR)$(PREFIX)/bin"
+	gzip -c kros.1 >"$(DESTDIR)$(MANPREFIX)/man1/kros.1.gz" \
+		|| cp kros.1 "$(DESTDIR)$(MANPREFIX)/man1"
+	-chmod 0755 "$(DESTDIR)$(PREFIX)/bin/kros"
+	-chmod 0644 "$(DESTDIR)$(MANPREFIX)/man1/kros.1.gz" \
+		|| chmod 0644 "$(DESTDIR)$(MANPREFIX)/man1/kros.1"
 uninstall:
-	rm -f $(PREFIX)/bin/kros $(MANPREFIX)/man1/kros.1 \
-		$(MANPREFIX)/man1/kros.1.gz
+	rm -f -- "$(DESTDIR)$(PREFIX)/bin/kros" \
+		"$(DESTDIR)$(MANPREFIX)/man1/kros.1.gz" \
+		"$(DESTDIR)$(MANPREFIX)/man1/kros.1"
