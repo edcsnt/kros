@@ -41,7 +41,7 @@ dt=$(date +%Y-%m-%dT%H:%M:%S)
 case $force in '') ckdate $dt ;; *) ;; esac
 
 log $dt clocking in/out
-read -r f <"$1"
+IFS= read -r f <"$1"
 # TODO: use --out-null
 printf %s "${f#*:}" \
 	| curl -d UserName="${f%%:*}" --data-urlencode Password@- \
