@@ -21,23 +21,22 @@ config='
 2026-06-04
 '
 
-log() { printf %s\\n "$*"; } >&2
-
+eprint() { printf %s\\n "$*"; } >&2
 ckdate() {
 	d=${1%%T*}
 	n='
 '
 
 	case $n$config$n in
-		*$n$d$n*|*$n${d#*-}$n*) log $1 is a skip day; exit 1
+		*$n$d$n*|*$n${d#*-}$n*) eprint $1 is a skip day; exit 1
 	esac
 }
 
 dt=$(date +%Y-%m-%dT%H:%M:%S)
 case $1 in -f) shift ;; *) ckdate $dt; esac
-case $# in  1)       ;; *) log usage: "${0##*/}" [-f] file; exit 2; esac
+case $# in  1)       ;; *) eprint usage: "${0##*/}" [-f] file; exit 2; esac
 
-log $dt clocking in/out
+eprint $dt clocking in/out
 IFS= read -r f <"$1"
 # TODO: use --out-null
 printf %s "${f#*:}" \
