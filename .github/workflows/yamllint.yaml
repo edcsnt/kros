@@ -20,7 +20,7 @@ concurrency:
 jobs:
   yamllint:
     runs-on:
-      - ubuntu-slim
+      - ubuntu-latest
     steps:
       - run: |
           git clone -qb ${{ github.ref_name }} --depth 1 \
