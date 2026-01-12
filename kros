@@ -34,7 +34,7 @@ ckdate() {
 
 dt=$(date +%Y-%m-%dT%H:%M:%S)
 case $1 in -f) shift ;; *) ckdate $dt; esac
-case $# in  1)       ;; *) eprint usage: "${0##*/}" [-f] file; exit 2; esac
+case $# in  1)       ;; *) eprint usage: kros [-f] file; exit 2; esac
 
 eprint $dt clocking in/out
 IFS= read -r f <"$1"
