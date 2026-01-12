@@ -20,7 +20,7 @@ concurrency:
 jobs:
   checkbashisms:
     runs-on:
-      - ubuntu-latest
+      - ubuntu-slim
     steps:
       # yamllint disable rule:line-length
       - run: |
