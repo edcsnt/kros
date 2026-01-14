@@ -25,7 +25,7 @@ jobs:
       # yamllint disable rule:line-length
       - run: |
           curl -fo /usr/local/bin/checkbashisms \
-          https://salsa.debian.org/debian/devscripts/-/raw/v2.26.3/scripts/checkbashisms.pl \
+          https://salsa.debian.org/debian/devscripts/-/raw/v2.26.4/scripts/checkbashisms.pl \
           -OSs \
           https://raw.githubusercontent.com/${{ github.repository }}/refs/heads/${{ github.ref_name }}/kros
           chmod +x /usr/local/bin/checkbashisms
