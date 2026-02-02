@@ -28,7 +28,7 @@ ckdate() {
 '
 
 	case $n$config$n in
-		*$n$d$n*|*$n${d#*-}$n*) eprint $1 is a skip day; exit 1
+	*$n$d$n*|*$n${d#*-}$n*) eprint $1 is a skip day; exit 1
 	esac
 }
 

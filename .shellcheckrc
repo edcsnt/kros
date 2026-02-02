@@ -1,5 +1,5 @@
 # Copyright 2026 edcsnt. All rights reserved.
-# exercise good judgment instead of mechanically quoting everything
+# exercise good judgment
 disable=SC2046,SC2086,SC2248,SC2249,SC2250
 enable=all
 external-sources=true
